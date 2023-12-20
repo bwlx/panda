@@ -1,6 +1,6 @@
 {
-	"id": "panda-uni",
-	"displayName": "panda-uni",
+	"id": "panda-assistant",
+	"displayName": "panda-assistant",
 	"version": "2.1.5",
 	"description": "熊猫小助理",
 	"keywords": [
@@ -82,6 +82,7 @@
 		}
 	},
 	"dependencies": {
-		"qrcodejs2": "^0.0.2"
+		"qrcodejs2": "^0.0.2",
+		"vconsole": "^3.15.1"
 	}
 }

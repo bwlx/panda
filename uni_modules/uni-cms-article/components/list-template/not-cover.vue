@@ -18,7 +18,9 @@
 				<text>{{ publishTime(data.publish_date) }}</text>
 			</view>
 			<view class="tags">
-			  <uni-tag class="tag" type="success" :text="item" v-for="(item, index) in data.tags" :key="index" />
+			  <text class="tag" v-for="(tag, index) in data.tags" :key="index">
+				  {{ tag }}
+			  </text>
 			</view>
 		  
 		</view>

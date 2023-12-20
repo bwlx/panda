@@ -67,8 +67,6 @@ module.exports = function () {
     .join('&')
 
   if (isNaN(Number(timestamp)) || (Number(timestamp) + timeout) < Date.now()) {
-    console.error('[timestamp error], timestamp:', timestamp, 'timeout:', timeout)
-
     throw {
       errCode: ERROR.ILLEGAL_REQUEST
     }
@@ -77,7 +75,6 @@ module.exports = function () {
   const reSignature = crypto.createHmac('sha256', `${this.config.requestAuthSecret + nonce}`).update(`${timestamp}${bodyStr}`).digest('hex')
 
   if (signature !== reSignature.toUpperCase()) {
-    console.error('[signature error], signature:', signature, 'reSignature:', reSignature.toUpperCase(), 'requestAuthSecret:', this.config.requestAuthSecret)
     throw {
       errCode: ERROR.ILLEGAL_REQUEST
     }

@@ -23,7 +23,7 @@ export default {
 		//应用名称
 		"appName": "熊猫小助理",
 		//应用logo
-		"logo": "/static/logo.png",
+		"logo": "/static/panda.png",
 		//公司名称
 		"company": "北京xx网络技术有限公司",
 		//口号

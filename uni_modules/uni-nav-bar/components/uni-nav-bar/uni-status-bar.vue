@@ -1,5 +1,6 @@
 <template>
 	<view :style="{ height: statusBarHeight }" class="uni-status-bar">
+	<!-- <view class="uni-status-bar"> -->
 		<slot />
 	</view>
 </template>

@@ -1,31 +1,37 @@
 <template>
+
     <view class="pages">
-        <view class="placeholder-bar">
+		<view class="placeholder-bar">
+		<!-- <view> -->
             <statusBar></statusBar>
             <view :style="{ height: `${navBarHeight}px` }"></view>
+			<!-- <view style="height: 88px"></view> -->
         </view>
 
-        <view class="nav-box">
-            <!-- #ifndef H5 -->
-            <statusBar></statusBar>
-            <!-- #endif -->
-            <view class="nav" :style="{ height: `${navBarHeight}px` }">
-                <!-- #ifdef MP -->
-                <view class="mp-button-left-placeholder" :style="{ width: `${mpButtonLeftPlaceholderSize}px` }"></view>
-                <!-- #endif -->
-                <!-- 搜索功能 -->
-                <view class="uni-search-box">
-                    <uni-search-bar ref="searchBar" radius="100" cancelButton="none" disabled
-                                    :placeholder="inputPlaceholder"/>
-                    <view class="cover-search-bar" @click="searchClick"></view>
-                </view>
-                <!-- #ifdef MP -->
-                <view class="mp-button-placeholder" :style="{ width: `${mpButtonPlaceholderSize}px` }"></view>
-                <!-- #endif -->
-            </view>
-        </view>
-		<view>
-			<my-tabs @change="cateChange" :modelData="cates" :initIndex="initIndex"></my-tabs>			
+	<view class="nav-box">
+	    <!-- #ifndef H5 -->
+	    <statusBar></statusBar>
+	    <!-- #endif -->
+	
+	    <view class="nav" :style="{ height: `${navBarHeight}px` }">
+		<!-- <view class="nav" style="height: 22px;"> -->
+	        <!-- #ifdef MP -->
+	        <view class="mp-button-left-placeholder" :style="{ width: `${mpButtonLeftPlaceholderSize}px` }"></view>
+	        <!-- #endif -->
+	        <!-- 搜索功能 -->
+	        <view class="uni-search-box">
+	            <uni-search-bar ref="searchBar" radius="100" cancelButton="none" disabled
+	                            :placeholder="inputPlaceholder"/>
+	            <view class="cover-search-bar" @click="searchClick"></view>
+	        </view>
+	        <!-- #ifdef MP -->
+	        <view class="mp-button-placeholder" :style="{ width: `${mpButtonPlaceholderSize}px` }"></view>
+	        <!-- #endif -->
+	    </view>
+	</view>
+		
+		<view >
+			<my-tabs @change="cateChange" :modelData="cates" :initIndex="initIndex"></my-tabs>
 		</view>
 
         <unicloud-db ref='udb' v-slot:default="{ pagination, hasMore, loading, error, options }" @error="onqueryerror"
@@ -82,7 +88,9 @@
 </template>
 
 <script>
+
   import statusBar from "@/uni_modules/uni-nav-bar/components/uni-nav-bar/uni-status-bar";
+    import uniNavBar from "@/uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar";
   import translatePublishTime from "@/uni_modules/uni-cms-article/common/publish-time";
   import refreshBox from "@/uni_modules/uni-cms-article/components/refresh-box/refreshBox.nvue";
 
@@ -91,11 +99,16 @@
   import threeCover from "@/uni_modules/uni-cms-article/components/list-template/three-cover.vue";
   import {parseImageUrl} from "@/uni_modules/uni-cms-article/common/parse-image-url";
   import myTabs from '@/components/myTabs/myTabs.vue'
+  import VConsole from 'vconsole'
+  
+  const vConsole = new VConsole();
 
   const db = uniCloud.database();
   const articleDBName = 'uni-cms-articles'
   const categoryDBName = 'uni-cms-categories'
   const userDBName = 'uni-id-users'
+  
+  console.log(uni.getSystemInfoSync());
 
   export default {
     components: {
@@ -148,7 +161,7 @@
       // #endif
 	  this.initCates()
       /* 可用窗口高度 - 搜索框高 - 状态栏高 */
-      this.listHeight = uni.getSystemInfoSync().windowHeight - uni.getSystemInfoSync().statusBarHeight - this.navBarHeight + 'px'; // 计算列表高度
+      this.listHeight = uni.getSystemInfoSync().windowHeight - uni.getSystemInfoSync().statusBarHeight - this.navBarHeight + 'px'; // 计算列表高度  
     },
     methods: {
       async listLoad(data) {
@@ -185,6 +198,7 @@
         this.mpButtonPlaceholderSize = menuButtonInfo.width + 10
         // 获取系统信息，判断是否为 iOS 系统，设置导航栏高度
         this.navBarHeight = uni.getSystemInfoSync().system.toLowerCase().includes('ios') ? 44 : 48
+
       },
 	  initCates() {
 		  // 显示加载中
@@ -283,6 +297,8 @@
 
     .pages {
         background-color: #FFFFFF;
+		display: flex;
+		flex-direction: column;
     }
 
     .refresh {
@@ -291,16 +307,16 @@
 
     .nav-box {
         background-color: #FFFFFF;
-        position: fixed;
+		position: fixed;
         top: 0;
         left: 0;
         right: 0;
 
         /* #ifndef APP-PLUS */
         z-index: 9;
-        /* #endif */
-    }
-
+        /* #endif
+	}
+	
     .pages .nav {
         display: flex;
         align-items: center;
@@ -323,11 +339,11 @@
 
     .cover-search-bar {
         position: absolute;
-        left: 0;
+       left: 0;
         right: 0;
         bottom: 0;
         top: 0;
-        /* #ifndef APP-NVUE */
+        /* #ifndef APP-NVUE
         z-index: 999;
         /* #endif */
     }

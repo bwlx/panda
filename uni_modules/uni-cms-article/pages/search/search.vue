@@ -87,7 +87,7 @@
 									<text class="author">{{ item.user_id[0] ? item.user_id[0].nickname : '' }}</text>
 									<text class="publish_date">{{ publishTime(item.publish_date) }}</text>
 									<view class="tags">
-										<uni-tag class="tag" type="success" :text="tag" v-for="(tag, idx) in item.tags" :key="idx" />
+										<text class="tag" v-for="(tag, idx) in item.tags" :key="idx">{{ tag }} </text>
 									</view>
 									<!--                -->
 									<!--                <uni-dateformat class="publish_date" :date="item.publish_date"-->
@@ -728,6 +728,7 @@ $word-container_header-height: 72rpx;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
+	align-items: baseline;
 	
 	.author,
 	.publish_date,

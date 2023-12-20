@@ -26,11 +26,6 @@
 				v-else-if="op.type === 'mediaVideo'"
 				:data="op.data"
 			></render-video>
-			<render-unlock-content
-				v-else-if="op.type === 'unlockContent'"
-				:adp-id="adConfig.adpId"
-				:watch-ad-unique-type="adConfig.watchAdUniqueType"
-			></render-unlock-content>
 		</template>
 	</view>
 </template>
@@ -43,7 +38,6 @@ import text from './text.vue'
 import image from './image.vue'
 import video from './video.vue'
 import list from './list.vue'
-import unlockContent from './unlock-content.vue'
 
 export default {
 	name: "render-article-detail",
@@ -64,7 +58,6 @@ export default {
 		}
 	},
 	components: {
-		renderUnlockContent: unlockContent,
 		renderText: text,
 		renderImage: image,
 		renderList: list,
